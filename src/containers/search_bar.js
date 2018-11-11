@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 
+const API_KEY = '7ce37aee9aca33a8d205593e504e2513';
+
 export default class SearchBar extends Component {
     constructor(props) {
         super(props);
@@ -17,14 +19,23 @@ export default class SearchBar extends Component {
     };
 
     onInputChange(event) {
-        console.log(event.target.value);
+        this.setState({
+            term: event.target.value
+        })
+    }
+
+    onFormSubmit(event) {
+        event.preventDefault();
+
+        //we need to go and fetch weather data
     }
 
     render() {
         return (
-            <form className="input-group">
+            <form onSubmit={this.onFormSubmit} className="input-group">
                 <input 
                 placeholder="enter city name and get forecast for city"
+                className="form-control"
                 style={this.inputStyle}
                 value={this.state.term}
                 onChange={this.onInputChange}
